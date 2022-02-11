@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LottieSplashScreen } from '@awesome-cordova-plugins/lottie-splash-screen/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(
+    private platform: Platform,
+    private lottie: LottieSplashScreen
+  ) {
+    this.platform.ready().then(() => {
+      console.log('platform is present');
+      
+      setTimeout(() => {
+        this.lottie.hide()
+      }, 3000);
+    })
+  }
 }
